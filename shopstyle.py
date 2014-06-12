@@ -8,7 +8,7 @@ except ImportError: from json import loads
 class ShopStyle(object):
     __api = 'http://api.shopstyle.com/api/v2/%s?%s'
     __formats = ['json', 'xml']
-    __sort = ['PriceLoHi', 'PriceHiLo', 'Recency', 'Popular']
+    __sort = ['PriceLoHi', 'PriceHiLo', 'Recency', 'Popular', 'Favorite']
     __filters = ['Category', 'Brand', 'Retailer', 'Price',
                  'Discount', 'Size', 'Color']
 
@@ -23,7 +23,7 @@ class ShopStyle(object):
 
         params = dict((k, v) for k, v in params.iteritems() if v)
 
-        url = self.__api % (method, urlencode(params))
+        url = self.__api % (method, urlencode(params, True))
         request = Request(url)
 
         try:
